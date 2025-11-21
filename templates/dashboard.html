@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard | CryptoPredictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+
+<div class="navbar">
+    <div class="navbar-left"><h1>CryptoPredictor</h1></div>
+    <div class="navbar-right">
+        <a href="/" class="nav-btn">Home</a>
+        <a href="/dashboard" class="nav-btn primary-btn">Dashboard</a>
+        <a href="/logout" class="nav-btn">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard-container">
+    <h2>Your Dashboard</h2>
+
+    <h3>Balance: ₹{{ balance }}</h3>
+
+    <h3>Your Portfolio</h3>
+    {% if portfolio %}
+        <ul>
+            {% for coin, qty in portfolio.items() %}
+                <li>{{ coin }} : {{ qty }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No holdings yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

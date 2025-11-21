@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="flash-container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Top Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <h1>CryptoPredictor</h1>
+        </div>
+
+<div class="navbar-right">
+    <a href="/" class="nav-btn">Home</a>
+    <a href="/about" class="nav-btn">About</a>
+    <!-- <a href="/dashboard" class="nav-btn">Dashboard</a> -->
+
+    {% if 'user' in session %}
+        <!-- Display balance -->
+        <div id="account-balance" class="balance-box">
+            💰 ${{ '%.2f'|format(session['user'].get('balance', 0)) }}
+        </div>
+
+        <!-- Profile dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">👤 {{ session['user']['username'] }} ▼</button>
+            <div class="dropdown-content">
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    {% else %}
+        <a href="/login" class="nav-btn">Login</a>
+        <a href="/signup" class="nav-btn primary-btn">Sign Up</a>
+    {% endif %}
+</div>
+
+    </div>
+
+    <!-- Live Prices -->
+    <div class="live-prices-wrapper">
+        <div class="live-prices-box">
+            <h3>Popular Coins</h3>
+            <div class="coin-list" id="coin-list"></div>
+        </div>
+    </div>
+
+    <!-- Main Prediction Section -->
+    <div class="container">
+        <h1>Crypto Price Prediction</h1>
+
+        <select id="symbol">
+            <option value="BTCUSDT">Bitcoin (BTC)</option>
+            <option value="ETHUSDT">Ethereum (ETH)</option>
+            <option value="BNBUSDT">BNB</option>
+            <option value="XRPUSDT">XRP</option>
+            <option value="ADAUSDT">Cardano (ADA)</option>
+            <option value="SOLUSDT">Solana (SOL)</option>
+            <option value="DOGEUSDT">Dogecoin (DOGE)</option>
+            <option value="DOTUSDT">Polkadot (DOT)</option>
+            <option value="MATICUSDT">Polygon (MATIC)</option>
+            <option value="LTCUSDT">Litecoin (LTC)</option>
+        </select>
+
+        <input type="number" id="day" placeholder="Enter future day number">
+        <button onclick="predictPrice()">Predict</button>
+        <p id="result"></p>
+    </div>
+
+    <!-- Chart Container -->
+    <div id="tv_chart_container" style="margin-top: 10px;"></div>
+
+    <!-- Hidden Buy/Sell Buttons -->
+    {% if 'user' in session %}
+    <div id="trade-buttons" style="display:none; justify-content:center; margin-top:20px;">
+        <button id="buy-btn" class="trade-btn buy-btn" onclick="placeOrder('buy')">Buy</button>
+        <button id="sell-btn" class="trade-btn sell-btn" onclick="placeOrder('sell')">Sell</button>
+    </div>
+    {% endif %}
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" onclick="scrollToTop()">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 CryptoPredictor. All rights reserved.</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onscroll = function () {
+            const btn = document.getElementById("backToTopBtn");
+            btn.style.display = window.scrollY > 300 ? "block" : "none";
+        };
+
+        // Hide flash messages after 5s
+        setTimeout(() => {
+            const flash = document.getElementById('flash-container');
+            if (flash) flash.style.display = 'none';
+        }, 5000);
+    </script>
+</body>
+</html>

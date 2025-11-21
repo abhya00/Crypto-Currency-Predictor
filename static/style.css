@@ -1,0 +1,669 @@
+/* Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(../static/bg.jpg);
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Navbar */
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0d0d2b;
+    padding: 15px 30px;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-left h1 {
+    margin: 0;
+    font-size: 22px;
+    color: #fff;
+}
+
+/* Navbar buttons */
+.navbar-right {
+    display: flex;
+    margin-right: 40px;
+    gap: 70px;
+}
+
+.nav-btn {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #4facfe;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.nav-btn:hover {
+    background: #4facfe;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.primary-btn {
+    background: #4facfe;
+    border: none;
+}
+
+.primary-btn:hover {
+    background: #00c6ff;
+    /* margin-left: auto; */
+    color: white;
+}
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #1a1a1a;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #4facfe;
+    color: #000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Centered Form Container */
+.container {
+    background:rgba(30, 31, 37, 0.6);
+    color: #fff;
+    padding: 40px 30px;
+    width: 400px;
+    margin: 120px auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease-in-out;
+    text-align: center;
+}
+
+/* Form Elements */
+.container select,
+.container input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form select {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+.container select:focus,
+.container input:focus {
+    border-color: #1CB5E0;
+    outline: none;
+}
+
+.container button {
+    width: 95%;
+    margin: 20px auto; /* Center horizontally and add spacing */
+    padding: 12px;
+    font-size: 16px;
+    background: #4facfe;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.container button:hover {
+    background: #1CB5E0;
+    transform: translateY(-2px);
+}
+
+/* Result */
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+.live-prices-box {
+    width: 95%;
+    background: rgba(30, 31, 37, 0.6); /* semi-transparent background */
+    color: #fff;
+    border-radius: 0;
+    padding: 20px 40px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 60px;
+}
+
+.live-prices-box h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.coin-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.coin-row {
+    flex: 1 1 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease;
+}
+
+.coin-row:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.coin-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coin-info img {
+    width: 26px;
+    height: 26px;
+}
+
+.coin-price {
+    font-weight: bold;
+    color: #eee;
+}
+
+.coin-change {
+    font-weight: bold;
+}
+
+.coin-change.up {
+    color: #0ecb81;
+}
+
+.coin-change.down {
+    color: #e74c3c;
+}
+/* Footer Styles */
+.footer {
+    background-color: #0d0d2b;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Back to Top Button */
+#backToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    z-index: 999;
+    background-color: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s;
+}
+
+#backToTopBtn:hover {
+    background-color: #1CB5E0;
+}
+
+.flash-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px 20px;
+    /* margin: 20px auto; */
+    margin-top: 70px;
+    margin-left: 700px;
+    width: fit-content;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+/* Profile Page Styling */
+.profile-container {
+    width: 60%;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(17, 25, 40, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Heading styles */
+.profile-container h1 {
+    font-size: 2.4em;
+    margin-bottom: 10px;
+    color: #00e6e6;
+    font-weight: 700;
+    text-shadow: 0 0 10px #00e6e6;
+}
+
+.profile-container p {
+    font-size: 1.1em;
+    color: #b5b5b5;
+    margin-bottom: 25px;
+}
+
+/* Recent Activity Section */
+.recent-activity {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.recent-activity h2 {
+    color: #00ffff;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Activity Cards */
+.activity-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(46, 87, 128, 0.2);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #dcdcdc;
+    transition: 0.3s ease;
+}
+
+.activity-card:hover {
+    background: rgba(52, 79, 188, 0.1);
+    border-color: #2b599a;
+    transform: translateY(-3px);
+}
+
+/* Symbol and Price Highlight */
+.activity-card strong {
+    color: #4874b5;
+}
+
+  
+.activity-card .price {
+    color: #20d0a4;
+    font-weight: bold;
+    text-shadow: 0 0 5px#20d0a4;
+}
+
+/* Timestamp */
+.activity-card .timestamp {
+    color: #888;
+    font-size: 0.9em;
+}
+
+
+.trade-buttons {
+    margin-top: 15px;
+}
+
+.buy-btn, .sell-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.buy-btn {
+    background-color: #28a745;
+}
+
+.sell-btn {
+    background-color: #dc3545;
+}
+
+.buy-btn:hover {
+    background-color: #218838;
+}
+
+.sell-btn:hover {
+    background-color: #c82333;
+}
+.trade-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.trade-actions button {
+    background-color: #2e2e2e;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 12px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#buy-btn {
+    background-color: #00c853; /* Green */
+}
+
+#sell-btn {
+    background-color: #d50000; /* Red */
+}
+
+.trade-actions button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+/* About Page */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('/static/bg2.png') center/cover no-repeat fixed; /* optional */
+    padding: 60px 20px;
+}
+
+.about-card {
+    background: rgba(17, 25, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.15);
+    max-width: 900px;
+    padding: 50px;
+    color: #e0e0e0;
+    text-align: center;
+    animation: fadeInUp 1s ease;
+}
+
+.about-card h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 15px #00e6e6;
+}
+
+.about-card h1 span {
+    color:#00ffff;
+}
+
+.about-card p {
+    line-height: 1.7;
+    font-size: 1.1em;
+    color: #d0d0d0;
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+    transition: 0.3s;
+    text-align: left;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+}
+
+.feature h3 {
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+
+.about-footer {
+    margin-top: 40px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    padding-top: 20px;
+}
+
+.about-footer p {
+    font-size: 1.05em;
+}
+
+.about-footer .tagline {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #00ffcc;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* === LOGIN PAGE STYLING === */
+body.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../static/bg.jpg') center/cover no-repeat;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    background: rgba(17, 25, 40, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+    text-align: center;
+    width: 380px;
+    color: white;
+    animation: fadeIn 0.8s ease;
+}
+
+.login-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+/* Input Fields */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+    outline: none;
+}
+
+/* Button */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.login-container button:hover {
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    transform: scale(1.03);
+}
+
+/* Sign up link */
+.login-container p {
+    margin-top: 20px;
+    color: #ccc;
+}
+
+.login-container a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Flash message box (login errors) */
+.flash-message {
+  position: absolute;
+  top: 10px; /* adjust for spacing above login container */
+  left: 5%;
+  transform: translateX(-50%);
+  background: rgba(0, 255, 255, 0.1);
+  color: #00f2fe;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  font-weight: 500;
+  font-size: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  width: auto;
+  max-width: 80%;
+  animation: fadeInOut 4s ease forwards;
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.balance-box {
+    background: #1a1f2e;
+    border: 1px solid #4facfe;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #4facfe;
+    margin-right: 12px;
+}

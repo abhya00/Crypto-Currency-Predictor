@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile - CryptoPredictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <h1>CryptoPredictor</h1>
+        </div>
+        <div class="navbar-right">
+            <a href="/" class="nav-btn">Home</a>
+            <a href="/about" class="nav-btn">About</a>
+            <div class="dropdown">
+                <button class="dropbtn">{{ user.username }} ▼</button>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Profile Info -->
+<div class="profile-container" style="margin-top:120px;">
+    <h1>Welcome, {{ user['username'] }}!</h1>
+    <p><strong>Email:</strong> {{ user.get('email','-') }}</p>
+    <p><strong>Account balance:</strong> ${{ '%.2f'|format(user.get('balance',0.0)) }}</p>
+
+    <h2>Your Holdings</h2>
+    {% if user.get('holdings') %}
+        <ul style="list-style:none; padding:0;">
+        {% for sym, qty in user.get('holdings').items() %}
+            <li class="activity-card">
+                <div>
+                    <strong>{{ sym }}</strong> — <span class="price">{{ qty }}</span>
+                </div>
+                <div class="timestamp">{{ user.get('timestamp','') }}</div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No holdings yet.</p>
+    {% endif %}
+
+    <h2>Your Recent Activity</h2>
+    <div class="recent-activity">
+        {% if activities %}
+            {% for activity in activities %}
+                <div class="activity-card">
+                    <div>
+                        <strong>{{ activity.get('action') }}</strong><br>
+                        <small>{{ activity.get('details') }}</small>
+                    </div>
+                    <div class="timestamp">{{ activity.get('timestamp') }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No activity yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 CryptoPredictor. All rights reserved.</p>
+    </footer>
+</body>
+</html>

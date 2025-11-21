@@ -1,0 +1,164 @@
+/* === General Page Setup === */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0a0f24 0%, #0b183a 100%);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-image: url(../static/bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+/* === Navbar === */
+.navbar {
+  background-color: #090e22;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-left h1 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.navbar-right a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: 1px solid #4facfe;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.navbar-right a:hover {
+  background: #4facfe;
+  color: #000;
+  box-shadow: 0 0 12px #4facfe;
+}
+
+.primary-btn {
+  background: #4facfe;
+  color: #000;
+  font-weight: 500;
+}
+
+/* === Flash Message (Centered) === */
+.flash-message {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 255, 255, 0.1);
+  color: #00f2fe;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  font-weight: 500;
+  font-size: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  animation: fadeInOut 4s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+/* === Signup Form Container === */
+.container {
+  background: rgba(9, 15, 40, 0.85);
+  width: 420px;
+  margin: 150px auto;
+  padding: 40px 35px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(79, 172, 254, 0.3);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+  box-shadow: 0 0 35px rgba(79, 172, 254, 0.5);
+}
+
+/* === Header === */
+.container h2 {
+  color: #00f2fe;
+  text-shadow: 0 0 10px #00f2fe;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+/* === Inputs === */
+.container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.container input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px #4facfe;
+}
+
+/* === Button === */
+.container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.container button:hover {
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  box-shadow: 0 0 15px #00f2fe;
+}
+
+/* === Bottom Text === */
+.container p {
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.container a {
+  color: #00f2fe;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
